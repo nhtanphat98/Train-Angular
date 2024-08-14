@@ -1,6 +1,18 @@
 .wrapper{
-    height: auto;
-    padding: 20px;
+    height: auto;   
     width: 100%;
     flex-grow: 1;
+    display: flex;
+    
+}
+
+.wrapper > router-outlet {
+    flex: 4.85; /* Chiếm 75% của wrapper */
+    background-color: #f0f0f0; /* Màu nền để dễ nhìn */
+}
+
+.wrapper > app-slide-bar {
+    flex: 0.15;
+    text-align: center;
+    border-left: 1px solid var(--border-color);
 }

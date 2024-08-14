@@ -1,10 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import './style/variables.scss';
 @import "primeng/resources/themes/lara-light-blue/theme.css";
+@import './style/theme-override.scss';
 @import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
 
 html,
-body, p, h1, h2, h3, h4 {
+body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -73,4 +75,12 @@ app-root {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.margin-m {
+    margin: 10px;
+}
+
+.padding-m {
+    padding: 10px;
 }

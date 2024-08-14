@@ -1,0 +1,48 @@
+.side-bar{
+    margin: 10px;
+}
+
+.shopping-cart:hover{
+    color: #ff5722; /* Màu sắc khi hover */
+    transform: scale(1.5); /* Phóng to khi hover */
+    cursor: pointer;
+}
+
+
+.heart{
+    margin-top: 10px;
+}
+
+.heart:hover{
+    color: #ff5722; /* Màu sắc khi hover */
+    transform: scale(1.5); /* Phóng to khi hover */
+    cursor: pointer;
+}
+
+.discount{
+    margin-top: 10px;
+    .images{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.discount:hover{
+    color: #ff5722; /* Màu sắc khi hover */
+    transform: scale(1.5); /* Phóng to khi hover */
+    cursor: pointer;
+}
+
+.live-stream{
+    margin-top: 10px;
+    .images{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.live-stream:hover{
+    color: #ff5722; /* Màu sắc khi hover */
+    transform: scale(1.5); /* Phóng to khi hover */
+    cursor: pointer;
+}

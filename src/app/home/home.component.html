@@ -1,7 +1,8 @@
-<div class="column">
-    <div class="row wrap gap-1 space-between">
-        <app-product *ngFor="let product of products" [product]="product">
 
-        </app-product>
+    <div class="card row gap-1 wrap">
+        <app-product
+        *ngFor="let product of products"
+        [product]="product"
+        (productOutput)="onProductOutput($event)"
+        ></app-product>
     </div>
-</div>

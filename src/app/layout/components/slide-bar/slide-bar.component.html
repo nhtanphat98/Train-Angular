@@ -1,0 +1,17 @@
+<div class="side-bar">
+    <p-sidebar [(visible)]="sidebarVisible" position="right" styleClass="w-100rem">
+        
+    </p-sidebar>
+    <div class="shopping-cart" (click)="sidebarVisible = true">
+        <i class="pi pi-shopping-cart pi-shopping-cart-color" style="font-size: 20px"></i>
+    </div>
+    <div class="heart" (click)="sidebarVisible = true">
+        <i class="pi pi-heart" style="font-size: 20px"></i>
+    </div>
+    <div class="discount" (click)="sidebarVisible = true">
+        <img src="assets\images\icons\discount.png" class="images"/>
+    </div>
+    <div class="live-stream" (click)="sidebarVisible = true">
+        <img src="assets\images\icons\live.png" class="images"/>
+    </div>
+</div>
