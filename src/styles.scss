@@ -84,3 +84,17 @@ app-root {
 .padding-m {
     padding: 10px;
 }
+
+.p-sidebar-right{
+    width: 700px;
+}
+ 
+.p-sidebar-header {
+    display: none; /* Ẩn phần header */
+  }
+
+.p-sidebar-content{
+    height: 100%;
+    padding: 0;
+    display: flex;
+}

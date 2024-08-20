@@ -1,48 +1,78 @@
-.side-bar{
+.side-bar {
     margin: 10px;
+    width: 2vh;
+    height: 100%;
 }
 
-.shopping-cart:hover{
-    color: #ff5722; /* Màu sắc khi hover */
-    transform: scale(1.5); /* Phóng to khi hover */
+.shopping-cart:hover {
     cursor: pointer;
 }
 
-
-.heart{
-    margin-top: 10px;
+.side-bar-custom {
+    border-right: 1px solid var(--border-color);
+    height: 100%;
+    left: 0;
 }
 
-.heart:hover{
-    color: #ff5722; /* Màu sắc khi hover */
-    transform: scale(1.5); /* Phóng to khi hover */
+.heart {
+    margin-top: 20px;
+}
+
+.heart:hover {
     cursor: pointer;
 }
 
-.discount{
-    margin-top: 10px;
-    .images{
+.discount {
+    margin-top: 20px;
+    .images {
         width: 20px;
         height: 20px;
     }
 }
 
-.discount:hover{
-    color: #ff5722; /* Màu sắc khi hover */
-    transform: scale(1.5); /* Phóng to khi hover */
+.discount:hover {
     cursor: pointer;
 }
 
-.live-stream{
-    margin-top: 10px;
-    .images{
+.live-stream {
+    margin-top: 20px;
+    .images {
         width: 20px;
         height: 20px;
     }
 }
 
-.live-stream:hover{
-    color: #ff5722; /* Màu sắc khi hover */
-    transform: scale(1.5); /* Phóng to khi hover */
+.live-stream:hover {
     cursor: pointer;
+}
+
+.review-content {
+    width: 100%;
+    height: 100%;
+}
+
+.cart-number {
+    border-radius: 100%;
+    background-color: rgba(255, 0, 0, 0.934);
+    width: 15px;
+    height: 15px;
+    font-size: 11px;
+    color: white;
+    position: absolute;
+    top: 0;
+    margin-top: 20px;
+    margin-left: 5px;
+}
+
+.cart-number-2 {
+    border-radius: 100%;
+    background-color: rgba(255, 0, 0, 0.934);
+    width: 15px;
+    height: 15px;
+    font-size: 11px;
+    color: white;
+    position: absolute;
+    top: 0;
+    margin-top: 20px;
+    margin-left: -5px;
 }

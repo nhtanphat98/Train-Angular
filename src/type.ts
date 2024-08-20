@@ -27,17 +27,20 @@ export interface Options{
     | boolean;
 }
 
-export interface Products {
-    items: Product[];
+export interface ResponseProduct {
+    data: Product[];
     total: number;
-    page: number;
-    perPage: number;
+    pageNumber: number;
+    pageSize: number;
     totalPages: number;
 }
 
 export interface Product {
     price: string;
+    description: string;
+    quantity: number;
     name: string;
+    status: string
     image: string;
     rating: number;
 }
@@ -48,6 +51,6 @@ export interface PaginationParams {
           | number
           | boolean
           | ReadonlyArray<string | number | boolean>;
-    page: number;
-    perPage: number;
+    pageNumber: number;
+    pageSize: number;
 }

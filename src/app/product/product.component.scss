@@ -1,8 +1,56 @@
 .star {
-    margin-left: 55px;
+    margin-top: 10px;
 }
 
-.rating-label {
+.card {
+    margin: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 1%;
+    border-color: black;
+    background-color: lightyellow;
+}
+
+.list-card {
+    width: 198vh;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    flex: 1 1 calc(25% - 20px);
+}
+
+.card:hover {
+    cursor: pointer;
+}
+
+.search {
+    display: flex;
+    width: 40%;
+    height: 55px;
+    margin-left: 30px;
+    margin-top: 30px;
+    background-color: yellow;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.pi-plus-circle-custom:hover {
+    transform: scale(1.5); /* Phóng to khi hover */
+    cursor: pointer;
+}
+
+.popup {
     position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    pointer-events: none; /* Tránh popup bị hover */
+  }
 
-}
+  p-paginator {
+    margin-top: 90%;
+    left: 0;
+    right: 0;
+    
+  }

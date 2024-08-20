@@ -9,7 +9,7 @@ import { SidebarModule } from 'primeng/sidebar';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HomeComponent, HeaderComponent, FooterComponent, SlideBarComponent, ButtonModule, SidebarModule],
+  imports: [RouterOutlet, HomeComponent, HeaderComponent, FooterComponent, SlideBarComponent, ButtonModule, SidebarModule,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

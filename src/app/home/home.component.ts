@@ -19,10 +19,5 @@ export class HomeComponent {
         console.log(product, 'Output');
     }
 
-    ngOnInit() {
-        this.productService.getProducts('http://localhost:3000/clothes', {page: 0, perPage: 15})
-        .subscribe(products => {
-            this.products = products.items;
-        });
-    }
+    
 }
