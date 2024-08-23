@@ -1,22 +1,25 @@
 .star {
     margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .card {
-    margin: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    padding: 10px;
-    border-radius: 1%;
-    border-color: black;
+    margin          : 30px;
+    box-shadow      : 0 2px 4px rgba(0, 0, 0, 0.3);
+    padding         : 10px;
+    border-radius   : 1%;
+    border-color    : black;
     background-color: lightyellow;
+    width           : 266px;
+    height          : 385px;
+    position        : relative;
 }
 
 .list-card {
-    width: 198vh;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 10px;
-    flex: 1 1 calc(25% - 20px);
+    width                : 100%;
+    display              : grid;
+    grid-template-columns: repeat(5, 1fr);
 }
 
 .card:hover {
@@ -24,33 +27,79 @@
 }
 
 .search {
-    display: flex;
-    width: 40%;
-    height: 55px;
-    margin-left: 30px;
-    margin-top: 30px;
+    display         : flex;
+    width           : 40%;
+    height          : 55px;
+    margin-left     : 30px;
+    margin-top      : 30px;
     background-color: yellow;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.pi-plus-circle-custom:hover {
-    transform: scale(1.5); /* Phóng to khi hover */
-    cursor: pointer;
+    justify-content : center;
+    align-items     : center;
+    position        : relative;
 }
 
 .popup {
-    position: absolute;
+    position        : absolute;
     background-color: #fff;
-    border: 1px solid #ccc;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    pointer-events: none; /* Tránh popup bị hover */
+    border          : 1px solid #ccc;
+    box-shadow      : 0px 4px 8px rgba(0, 0, 0, 0.1);
+    pointer-events  : none;
+    /* Tránh popup bị hover */
+}
+
+p-paginator {
+    margin-top: 90%;
+    left      : 0;
+    right     : 0;
+
+}
+
+app-filter-search:hover {
+    cursor: pointer;
+}
+
+.status-tag {
+    position        : absolute;
+    top             : 16px;
+    right           : 16px;
+    background-color: #28a745;
+    /* Green for Available */
+    color           : #fff;
+    padding         : 5px 10px;
+    border-radius   : 4px;
+    font-size       : 0.9em;
+    font-weight     : bold;
+}
+
+.available {
+    background-color: #28a745;
+    /* Green for Available */
+}
+
+.out-of-stock {
+    background-color: #dc3545;
+    /* Red for Out of Stock */
+}
+
+.pi-plus-circle-custom {
+    font-size: 24px; /* Điều chỉnh kích thước biểu tượng */   
+    cursor: pointer; /* Hiển thị con trỏ tay khi hover */
+    color: #333; /* Màu sắc của dấu + */
+  }
+  
+  /* Hiệu ứng hover */
+  .pi-plus-circle-custom:hover {
+    background-color: #e0e0e0; /* Màu nền khi hover */
+    color: #007bff; /* Màu sắc của dấu + khi hover */
+    transform: scale(1.1); /* Phóng to nhẹ khi hover */
+  }
+  
+  /* Cải thiện kiểu cho biểu tượng bị vô hiệu hóa */
+  .disabled-icon {
+    opacity: 0.5; /* Làm mờ biểu tượng */
+    pointer-events: none; /* Không cho phép tương tác */
+    color: #999; /* Màu sắc của dấu + khi bị vô hiệu hóa */
+    cursor: not-allowed; /* Hiển thị con trỏ bị cấm khi hover */
   }
 
-  p-paginator {
-    margin-top: 90%;
-    left: 0;
-    right: 0;
-    
-  }
+  

@@ -1,4 +1,6 @@
-<header class="wrapper row full-center">
-    <img src="assets\images\oc-logo.svg" alt="Logo image" class="logo">
-
+<header class="wrapper row full-center">    
+    <p-tabMenu [model]="items" 
+    [activeItem]="activeItem" 
+    (activeItemChange)="onActiveItemChange($event)"
+    routerLink="{{route}}"/>
 </header>

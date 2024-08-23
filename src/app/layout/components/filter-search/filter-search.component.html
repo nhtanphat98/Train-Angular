@@ -1,0 +1,79 @@
+<div (click)="showDialogSearch()">
+    <i class="pi pi-filter" style="font-size: 20px;"></i>
+</div>
+
+
+<p-dialog [header]="header" [modal]="true" [(visible)]="display" [style]="{ height: '35rem', width: '35rem'}"
+    (onHide)="onReset()">
+    <div class="search-content">
+        <div style="display: flex; margin-bottom: 30px;">
+            <div style="width: 70px;">
+                <label for="name" class="font-semibold w-6rem" style="width: 30px;">Name: </label>
+            </div>
+            <div>
+                <input type="text" [(ngModel)]="searchFilter.name" style="width: 332px; margin-left: 20px;" />
+            </div>
+        </div>
+
+        <div style="display: flex; margin-bottom: 30px;">
+            <div style="width: 70px;">
+                <label for="status" class="font-semibold w-6rem">Status: </label>
+            </div>
+            <div style="width: 250px; display: flex; padding-left: 20px;">
+                <p-dropdown [options]="statusOptions" [checkmark]="true" optionLabel="name" [showClear]="true"
+                    placeholder="Select a Status" (onChange)="onStatusChange($event)">
+                </p-dropdown>
+
+            </div>
+        </div>
+
+        <div style="display: flex; margin-bottom: 30px;">
+            <div style="width: 70px;">
+                <label for="price" class="font-semibold w-6rem">Price: </label>
+            </div>
+
+            <div style="width: 250px; display: flex; ">
+                <div style="margin-right: 20px;">
+                    <input type="text" [(ngModel)]="searchFilter.rangePrice[0]"
+                        style="width: 100px; margin-left: 20px;" />
+                </div>
+                <span>-</span>
+                <div style="margin-left: 21px;">
+                    <input type="text" [(ngModel)]="searchFilter.rangePrice[1]" style="width: 100px;" />
+                </div>
+            </div>
+
+        </div>
+        <div style="width: 70%; margin-left: 90px; margin-bottom: 30px;">
+            <p-slider [(ngModel)]="searchFilter.rangePrice" [min]="0" [max]="10000" [step]="100" [range]="true" />
+        </div>
+
+        <div style="display: flex; margin-bottom: 30px;">
+            <div style="width: 70px;">
+                <label for="category" class="font-semibold w-6rem">Category: </label>
+            </div>
+            <div style="width: 250px; display: flex; padding-left: 20px;">
+                <p-dropdown [options]="categoryOptions" [checkmark]="true" optionLabel="name" [showClear]="true"
+                    placeholder="Select a Category" (onChange)="onCategoryChange($event)" >
+                </p-dropdown>
+
+            </div>
+        </div>
+
+        <div style="display: flex; margin-bottom: 30px; margin-top: 30px;">
+            <div style="width: 70px;">
+                <label for="rating" class="font-semibold w-6rem">Rating: </label>
+            </div>
+            <div style="margin-left: 10px;">
+                <p-rating [(ngModel)]="searchFilter.rating" [stars]="5" />
+            </div>
+        </div>
+        <div class="search-button">
+            <p-button label="Search" (onClick)="onSearch()" />
+        </div>
+
+    </div>
+
+
+
+</p-dialog>

@@ -4,10 +4,19 @@
     border-bottom: 1px solid var(--border-color);
     padding: 20px 10px;
     box-sizing: border-box;
-    background-color: #95b3d7;
+    background-color: #ffff70;
 
     .logo {
         height: 100%;
         object-fit: contain;
     }
 }
+
+.hidden-label .p-button-label {
+    display: none;
+  }
+  
+  /* Đảm bảo các nút vẫn giữ kích thước */
+  .hidden-label .p-button {
+    padding: 0; /* Loại bỏ padding nếu cần thiết */
+  }

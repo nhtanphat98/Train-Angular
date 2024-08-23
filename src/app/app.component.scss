@@ -7,16 +7,18 @@
 }
 
 .wrapper > app-home {
-    flex: 4.85; /* Chiếm 75% của wrapper */
+    width: 97%;
     background-color: #f0f0f0; /* Màu nền để dễ nhìn */
     
 }
 
 .wrapper > app-slide-bar {
-    flex: 0.5;
+    width: 3%;
     text-align: center;
     border-left: 1px solid var(--border-color);
     position: absolute;
     right: 0;
     height: 100%;
+    justify-content: center;
+    display: flex;
 }

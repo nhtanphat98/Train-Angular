@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { Product } from '../../../../type';
-import { empty } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 @Component({

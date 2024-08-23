@@ -1,69 +1,53 @@
-<div class="search">
-    <p-iconField iconPosition="right" style="width: 95%">
-        <p-inputIcon styleClass="pi pi-search" />
-        <input type="text" pInputText style="width: 100%; font-size: 16px" />
-    </p-iconField>
+<div style="display: flex;">
+    <div class="search">
+        <p-iconField iconPosition="right" style="width: 95%">
+            <p-inputIcon styleClass="pi pi-search" />
+            <input type="text" pInputText style="width: 100%; font-size: 16px" />
+        </p-iconField>
+    </div>
+    <app-filter-search header="Search Filter" (search)="getFilterSearch($event)"
+        style="margin-top: 50px; margin-left: 20px;">
+
+    </app-filter-search>
 </div>
+<div></div>
 <div class="list-card">
-    <div
-        class="card"
-        *ngFor="let product of products"
-        (mouseover)="showPopup($event, product)"
-        (mousemove)="updatePopupPosition($event)"
-        (mouseleave)="hidePopup()"
-    >
-        <img
-            style="width: 220px; height: 200px"
-            src="assets\images\products\{{ product.image }}.jpg"
-        />
+    <div class="card" *ngFor="let product of products" (mouseover)="showPopup($event, product)"
+        (mousemove)="updatePopupPosition($event)" (mouseleave)="hidePopup()">
+        <div
+            [ngClass]="{'status-tag': true, 'available': product.status === 'available', 'out-of-stock': product.status === 'out of stock'}">
+            {{ product.status }}
+        </div>
+        <img style="width: 245px; height: 220px" src="assets\images\products\{{ product.image }}" />
         <h2 class="title">{{ product.name }}</h2>
         <div class="product-price">
             <span class="price-label">Price: </span>
-            <span class="price">{{ product.price }}</span
-            ><br />
+            <span class="price">{{ product.price }}$</span><br />
             <div class="rating">
                 <div class="star">
-                    <p-rating
-                        [(ngModel)]="product.rating"
-                        readonly="true"
-                        iconCancelClass="hidden"
-                    ></p-rating>
-                    <i
-                        class="pi pi-plus-circle pi-plus-circle-custom"
-                        style="
-                            background-color: rgb(235, 235, 77);
-                            border-radius: 50%;
-                            font-size: 25px;
-                            margin-left: 10vh;
-                        "
-                    ></i>
+                    <p-rating [(ngModel)]="product.rating" readonly="true" iconCancelClass="hidden"></p-rating>
+                </div>
+                <div class="add-product">
+                    <i class="pi pi-plus-circle pi-plus-circle-custom"
+                        [ngClass]="{'disabled-icon': product.status === 'out of stock'}"
+                        (click)="addProductToCart(product)"></i>
+                    <p-toast position="bottom-right"/>
                 </div>
             </div>
         </div>
+    
+    
 
-        <div
-            class="popup"
-            *ngIf="isPopupVisible"
-            [ngStyle]="{
-                'top.px': popupPosition.y,
-                'left.px': popupPosition.x
-            }"
-        >
-            <div class="product-detail">
-                <app-product-detail
-                    [product]="productHovered"
-                ></app-product-detail>
-            </div>
+    </div>
+    <div class="popup" *ngIf="isPopupVisible" [ngStyle]="{
+        'top.px': popupPosition.y,
+        'left.px': popupPosition.x
+    }">
+        <div class="product-detail">
+            <app-product-detail [product]="productHovered"></app-product-detail>
         </div>
     </div>
 </div>
-<p-paginator
-    (onPageChange)="onPageChange($event)"
-    [first]="first"
-    [rows]="rows"
-    [totalRecords]="total"
-    [showCurrentPageReport]="true"
-    [showPageLinks]="false"
-    [showJumpToPageDropdown]="false"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
-/>
+<p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="total"
+    [showCurrentPageReport]="true" [showPageLinks]="false" [showJumpToPageDropdown]="false"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" />

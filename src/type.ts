@@ -15,7 +15,7 @@ export interface Options{
           | string
           | number
           | boolean
-          | ReadonlyArray<string | number | boolean>;
+          | ReadonlyArray<string | number | boolean>
       };
   reportProgress?: boolean;
   responseType?: 'json';
@@ -36,13 +36,27 @@ export interface ResponseProduct {
 }
 
 export interface Product {
-    price: string;
+    id: number;
+    price: number;
     description: string;
     quantity: number;
     name: string;
     status: string
     image: string;
     rating: number;
+}
+
+export interface Category {
+    id: number;
+    name: string;
+}
+
+export interface SearchFilter {
+    rangePrice: number[],
+    name: string,
+    status: string,
+    rating: number,
+    category_id: number,
 }
 
 export interface PaginationParams {
