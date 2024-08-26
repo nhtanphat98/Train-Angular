@@ -1,0 +1,25 @@
+<div style="width: 50%; margin: 50px;">
+    <div style="width: 100%; display: flex; justify-content: center; font-weight: bold; margin-bottom: 50px;">Orders History</div>
+    <p-table [value]="ordersHistory" [tableStyle]="{ 'min-width': '5rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Code</th>
+                <th>Create at</th>
+                <th>Detail Order</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-order>
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.created_at }}</td>
+                <td>
+                    <div class="detail-order">
+                      <i class="pi pi-angle-right"></i>  
+                    </div>
+                    
+
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

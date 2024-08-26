@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Product } from '../../../../type';
@@ -6,10 +6,10 @@ import { CommonModule } from '@angular/common';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FormsModule } from '@angular/forms';
 import { removeFromCart, updateQuantity } from '../../../shopping-cart/cart-store/cart.actions';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
     selector: 'app-cart-review',
@@ -18,13 +18,13 @@ import { MessageService } from 'primeng/api';
         CommonModule,
         InputNumberModule,
         FormsModule,
-        ConfirmDialogComponent,
+        ConfirmDialogModule,
         RouterModule,
-        ToastModule 
+        ToastModule,
     ],
     templateUrl: './cart-review.component.html',
     styleUrl: './cart-review.component.scss',
-    providers: [MessageService]
+    providers: [MessageService, ConfirmationService]
 })
 export class CartReviewComponent {
     private store = inject(Store);
@@ -32,8 +32,12 @@ export class CartReviewComponent {
     cart: Product[] = [];
     totalPrice: number = 0;
     quantity: number = 0;
+    key: string = '';
+    active: string ='';
 
-    constructor( private messageService: MessageService) {
+    constructor(private messageService: MessageService,
+        private router: Router
+    ) {
         this.cart$ = this.store.select('cart');
     }
 
@@ -48,43 +52,51 @@ export class CartReviewComponent {
         this.totalPrice = total;
     }
 
+    
+
     onQuantityChange(productId: number, newQuantity: number) {
         const product = this.cart.find((p) => p.id === productId);
         if (product) {
-          console.log(product);
-          
+            console.log(product);
+
             product.quantity = newQuantity;
 
             this.store.dispatch(
-                updateQuantity({ productId: productId, quantity: newQuantity })              
+                updateQuantity({ productId: productId, quantity: newQuantity })
             );
             this.showSuccess('Success update quantity');
         }
+        if(newQuantity === 0){
+            this.store.dispatch(removeFromCart({productId}));
+        }
         this.totalPrice = 0;
         this.cart.forEach(item => {
-          this.totalPrice += item.price * item.quantity;
+            this.totalPrice += item.price * item.quantity;
         });
-        if(product?.quantity === 0){
-          this.store.dispatch(removeFromCart({productId}));
-          this.showSuccess('Remove Success');
-        }
+        
+    }
+
+    navigateToCartDetail() {
+        this.router.navigate(['/shopping-cart'],{
+            queryParams: { menuItemIndex: 1}
+        });
     }
 
     showSuccess(message: string) {
-      this.messageService.add({
-          key: 'br',
-          severity: 'success',
-          summary: 'Success',
-          detail: message,
-      });
-  }
+        this.messageService.add({
+            key: 'br',
+            severity: 'success',
+            summary: 'Success',
+            detail: message,
+        });
+    }
 
-  showError(message: string) {
-      this.messageService.add({
-          key: 'br',
-          severity: 'error',
-          summary: 'Error',
-          detail: message,
-      });
-  }
+    showError(message: string) {
+        this.messageService.add({
+            key: 'br',
+            severity: 'error',
+            summary: 'Error',
+            detail: message,
+        });
+    }
 }

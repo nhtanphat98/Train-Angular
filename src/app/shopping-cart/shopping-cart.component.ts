@@ -6,7 +6,7 @@ import { ConfirmDialogComponent } from '../layout/components/confirm-dialog/conf
 import { InputNumberModule } from 'primeng/inputnumber';
 import { Observable } from 'rxjs';
 import { CreateOrderDetailDto, CreateOrderDto, Product } from '../../type';
-import { removeFromCart, updateQuantity } from './cart-store/cart.actions';
+import { clearCart, removeFromCart, updateQuantity } from './cart-store/cart.actions';
 import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { Router, RouterModule } from '@angular/router';
@@ -68,17 +68,16 @@ export class ShoppingCartComponent {
             .postOrder(createOrderDto, createOrderDetailDto)
             .subscribe(
                 (response) => {
-                    console.log('Order created successfully', response);
-                    this.showSuccess();
+                    this.showSuccess('Order Success');
+                    this.store.dispatch(clearCart());
                 },
                 (error) => {
-                    console.error('Error creating order', error);
                     this.showError();
                 }
             );
     }
 
-    confirm(productId: number,event: Event) {
+    confirm(productId: number, event: Event) {
         this.confirmationService.confirm({
             target: event.target!,
             header: 'Confirmation',
@@ -94,6 +93,7 @@ export class ShoppingCartComponent {
                 });
             },
             reject: () => {
+                
                 this.messageService.add({
                     key: 'rejected',
                     severity: 'error',
@@ -106,6 +106,12 @@ export class ShoppingCartComponent {
 
     navigateToCart() {
         this.router.navigate(['']);
+    }
+
+    navigateToHistory(user_id: number) {
+        this.router.navigate(['/history-cart'],{
+            queryParams: { userId:  user_id}
+        });
     }
 
     ngOnInit() {
@@ -122,27 +128,67 @@ export class ShoppingCartComponent {
     onQuantityChange(productId: number, newQuantity: number) {
         const product = this.cart.find((p) => p.id === productId);
         if (product) {
-            console.log(product);
-
             product.quantity = newQuantity;
+            if (newQuantity === 0) {
+                this.confirmationService.confirm({
+                    header: 'Confirmation',
+                    message: 'Are you sure you want to delete?',
+                    icon: 'pi pi-exclamation-triangle',
+                    accept: () => {
+                        this.store.dispatch(removeFromCart({ productId }));
+                        this.totalPrice = 0;
+                        this.cart.forEach((item) => {
+                            console.log(item);
+                            this.totalPrice += item.price * item.quantity;
+                        });
+                        this.messageService.add({
+                            key: 'confirmed',
+                            severity: 'success',
+                            summary: 'Confirmed',
+                            detail: 'You have accepted',
+                        });
+                    },
+                    reject: () => {
 
-            this.store.dispatch(
-                updateQuantity({ productId: productId, quantity: newQuantity })
-            );
-            this.showSuccess();
+                        this.cart$?.subscribe((products) => {
+                            this.cart = products.map((product) => ({ ...product }));
+                        });
+                        this.totalPrice = 0;
+                        this.cart.forEach((item) => {
+                            console.log(item);
+                            this.totalPrice += item.price * item.quantity;
+                        });
+                        this.cart.forEach(item => {
+                            console.log(item);
+                        });
+                        this.messageService.add({
+                            key: 'rejected',
+                            severity: 'error',
+                            summary: 'Rejected',
+                            detail: 'You have rejected',
+                        });
+                    },
+                });
+            } else {
+                this.store.dispatch(
+                    updateQuantity({ productId: productId, quantity: newQuantity })
+                );
+                this.showSuccess('Update Quantity Success');
+                this.totalPrice = 0;
+                this.cart.forEach((item) => {
+                    console.log(item);
+                    this.totalPrice += item.price * item.quantity;
+                });
+            }
         }
-        this.totalPrice = 0;
-        this.cart.forEach((item) => {
-            this.totalPrice += item.price * item.quantity;
-        });
     }
 
-    showSuccess() {
+    showSuccess(message: string) {
         this.messageService.add({
             key: 'br',
             severity: 'success',
             summary: 'Success',
-            detail: 'Create Success',
+            detail: message,
         });
     }
 
@@ -153,9 +199,9 @@ export class ShoppingCartComponent {
             summary: 'Error',
             detail: 'Create Fail',
         });
-    
+
     }
-    
+
     removeProductFromCart(productId: number) {
         this.store.dispatch(removeFromCart({ productId }));
     }

@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CreateOrderDetailDto, CreateOrderDto } from '../../type';
+import { CreateOrderDetailDto, CreateOrderDto, Order } from '../../type';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,10 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  getOrdersByUserId(): Observable<[]> {
-    return this.http.get<any>(this.apiUrl);
+  getOrdersHistoryByUserId(user_id: number): Observable<Order[]> {
+    const params = new HttpParams()
+    .set('user_id', user_id.toString());
+    return this.http.get<any>(this.apiUrl + "?userId=" + user_id);
   }
 
   postOrder(createOrderDto: CreateOrderDto, createOrderDetailDto: CreateOrderDetailDto[]) {

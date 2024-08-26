@@ -79,3 +79,17 @@ export interface CreateOrderDto {
     quantity: number;
   }
   
+  export interface OrderDetail{
+    id: number;
+    product_id: number;
+    order_id: number;
+    quantity: number;
+    created_at: Date;
+  }
+
+  export interface Order{
+    id: number;
+    user_id: number;
+    created_at: Date;
+    orderDetail: OrderDetail[];
+  }

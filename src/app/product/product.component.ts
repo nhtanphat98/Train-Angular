@@ -72,6 +72,7 @@ export class ProductComponent {
 
     private store = inject(Store);
     cart$?: Observable<Product[]>;
+    searchFilterText: string = '';
 
     constructor(
         private productsService: ProductsService,
@@ -124,6 +125,12 @@ export class ProductComponent {
 
     getFilterSearch(searchFilter: SearchFilter) {
         this.searchFilter = searchFilter;
+        console.log(searchFilter);
+        this.loadProducts();
+    }
+
+    getFilterSearchText(){
+        this.searchFilter.name = this.searchFilterText;
         this.loadProducts();
     }
 

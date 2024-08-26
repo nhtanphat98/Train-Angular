@@ -1,10 +1,16 @@
 <div style="display: flex;">
     <div class="search">
         <p-iconField iconPosition="right" style="width: 95%">
-            <p-inputIcon styleClass="pi pi-search" />
-            <input type="text" pInputText style="width: 100%; font-size: 16px" />
+            <div class="icon-search">
+                <p-inputIcon styleClass="pi pi-search"/>
+            </div>
+            
+            <input  [(ngModel)]="searchFilterText" type="text" pInputText style="width: 100%; font-size: 16px" placeholder="Search by name" (keyup.enter)="getFilterSearchText()"/>
         </p-iconField>
     </div>
+
+
+
     <app-filter-search header="Search Filter" (search)="getFilterSearch($event)"
         style="margin-top: 50px; margin-left: 20px;">
 
