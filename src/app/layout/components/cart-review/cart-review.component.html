@@ -1,4 +1,61 @@
-
-<div class="card" *ngFor="let product of cart">
-    {{product.name}};
+<div
+    style="
+        border-bottom: 1px solid rgb(234, 209, 209);
+        padding: 10px;
+        margin: 10px;
+    "
+>
+    Cart
 </div>
+
+<div class="cart-review" *ngFor="let product of cart" style="margin: 10px;">
+    <div style="width: 100px; height: 100px">
+        <img
+            style="width: 95%; height: 95%"
+            src="assets\images\products\{{ product.image }}"
+        />
+    </div>
+    <div style="width: 200px">
+        <div>
+            {{ product.name }}
+        </div>
+        <div>
+            <p-inputNumber
+                [(ngModel)]="product.quantity"
+                [showButtons]="true"
+                buttonLayout="horizontal"
+                inputId="horizontal"
+                spinnerMode="horizontal"
+                [step]="1"
+                decrementButtonClass="decrement-button-custom"
+                incrementButtonClass="increment-button-custom"
+                incrementButtonIcon="pi pi-plus"
+                decrementButtonIcon="pi pi-minus"
+                mode="decimal"
+                [inputStyle]="{
+                    'text-align': 'center',
+                    width: '100px',
+                    height: '30px'
+                }"
+                min="0"
+                (ngModelChange)="onQuantityChange(product.id, $event)"
+            ></p-inputNumber>
+        </div>
+    </div>
+    <div style="width: 50px;">
+        {{ product.price * product.quantity }}
+    </div>
+</div>
+
+<div style="display: flex; justify-content: space-between">
+    <div style="margin-left: 10px">Total</div>
+    <div style="margin-right: 10px">
+        {{ totalPrice }}
+    </div>
+</div>
+
+<a href="/shopping-cart" target="_blank">
+    <div>
+        <span>View Cart Detail</span>
+    </div>
+</a>

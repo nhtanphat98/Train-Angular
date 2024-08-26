@@ -23,15 +23,16 @@
         <div class="product-price">
             <span class="price-label">Price: </span>
             <span class="price">{{ product.price }}$</span><br />
-            <div class="rating">
+            <div class="rating" style="display: flex; justify-content: space-between;">
                 <div class="star">
                     <p-rating [(ngModel)]="product.rating" readonly="true" iconCancelClass="hidden"></p-rating>
                 </div>
-                <div class="add-product">
+                <div class="add-product" style="display: flex; justify-items: center;">
                     <i class="pi pi-plus-circle pi-plus-circle-custom"
                         [ngClass]="{'disabled-icon': product.status === 'out of stock'}"
-                        (click)="addProductToCart(product)"></i>
-                    <p-toast position="bottom-right"/>
+                        (click)="addProductToCart(product)"
+                        ></i>
+                    <p-toast key="br" position="bottom-right"/>
                 </div>
             </div>
         </div>

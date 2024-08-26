@@ -21,10 +21,14 @@ import { PaginatorModule } from 'primeng/paginator';
 import { FilterSearchComponent } from '../layout/components/filter-search/filter-search.component';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { addToCart, clearCart, removeFromCart, updateQuantity } from '../shopping-cart/cart-store/cart.actions';
+import {
+    addToCart,
+    clearCart,
+    removeFromCart,
+    updateQuantity,
+} from '../shopping-cart/cart-store/cart.actions';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-
 
 @Component({
     selector: 'app-product',
@@ -40,16 +44,16 @@ import { MessageService } from 'primeng/api';
         ProductDetailComponent,
         PaginatorModule,
         FilterSearchComponent,
-        ToastModule
+        ToastModule,
     ],
     templateUrl: './product.component.html',
     styleUrl: './product.component.scss',
-    providers: [MessageService]
+    providers: [MessageService],
 })
 export class ProductComponent {
     products: Product[] = [];
     pageNumber = 1;
-    pageSize = 10;
+    pageSize = 8;
     total = 0;
     totalPages = 0;
     value!: string;
@@ -63,25 +67,29 @@ export class ProductComponent {
         rating: 0,
         status: '',
         category_id: 0,
-    }
-    
+    };
+    cart: Product[] = [];
+
     private store = inject(Store);
     cart$?: Observable<Product[]>;
 
-    constructor(private productsService: ProductsService, private messageService: MessageService,
+    constructor(
+        private productsService: ProductsService,
+        private messageService: MessageService
     ) {
         this.cart$ = this.store.select('cart');
     }
 
     ngOnInit() {
         this.loadProducts();
+        this.cart$?.subscribe((products) => {
+            this.cart = products.map((product) => ({ ...product }));
+        });
     }
 
     onPageChange(value: any) {
         this.pageNumber = value.page + 1;
-        console.log(value);
         this.loadProducts();
-
     }
 
     loadProducts() {
@@ -120,23 +128,39 @@ export class ProductComponent {
     }
 
     addProductToCart(product: Product) {
-        this.store.dispatch(addToCart({ product }));
+        for (let item of this.cart) {
+            if (item.id === product.id) {
+                console.log(product);
+                this.store.dispatch(updateQuantity({ productId: product.id, quantity: item.quantity + 1 }));
+                this.showSuccess();
+                return;
+            }
+        }
+        product.quantity = 1;
+        this.store.dispatch(addToCart({product}));
+        this.showSuccess();
     }
 
     showSuccess() {
-        this.messageService.add({ key: 'br', severity: 'success', summary: 'Success', detail: this.messageContent });
+        this.messageService.add({
+            key: 'br',
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Added Success',
+        });
     }
 
     showError() {
-        this.messageService.add({ key: 'br', severity: 'error', summary: 'Error', detail: this.messageContent });
+        this.messageService.add({
+            key: 'br',
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Add Fail',
+        });
     }
 
     removeProductFromCart(productId: number) {
         this.store.dispatch(removeFromCart({ productId }));
-    }
-
-    updateQuantity(productId: number, quantity: number) {
-        this.store.dispatch(updateQuantity({ productId, quantity }));
     }
 
     clearCart() {

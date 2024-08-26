@@ -1,0 +1,22 @@
+.cart-review{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(234, 209, 209);
+}
+
+.increment-button-custom {
+    width: 100px; /* Chiều rộng của nút tăng */
+    height: 30px; /* Chiều cao của nút tăng */
+    background-color: #4caf50; /* Màu nền của nút tăng */
+    color: white; /* Màu chữ trên nút tăng */
+    font-size: 1.2em; /* Kích thước chữ trên nút tăng */
+}
+
+/* Tùy chỉnh kích thước và kiểu dáng cho nút giảm */
+.decrement-button-custom {
+    width: 100px; /* Chiều rộng của nút giảm */
+    height: 30px; /* Chiều cao của nút giảm */
+    background-color: #f44336; /* Màu nền của nút giảm */
+    color: white; /* Màu chữ trên nút giảm */
+    font-size: 1.2em; /* Kích thước chữ trên nút giảm */
+}

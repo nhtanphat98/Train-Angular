@@ -26,8 +26,8 @@
                 </div>
                 <div class="cart-number" *ngIf="cart.length > 0">{{cart.length}}</div>
             </div>
-            <div class="review-content">
-
+            <div class="review-content" style="height: 100%;">
+                <app-cart-review></app-cart-review>
             </div>
     </p-sidebar>
     <div class="shopping-cart" (click)="sidebarVisible = true">

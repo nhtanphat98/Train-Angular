@@ -1,0 +1,43 @@
+.cart-content {
+    height: 100%;
+    width: 100%;
+}
+
+.cart-review{
+    display: flex;
+    border-radius: 10px;
+    width: 50%;
+    border: 1px solid rgba(234, 209, 209, 0.734);
+    width: 100%;
+    position: relative;
+}
+
+.increment-button-custom {
+    width: 100px; /* Chiều rộng của nút tăng */
+    height: 30px; /* Chiều cao của nút tăng */
+    background-color: #4caf50; /* Màu nền của nút tăng */
+    color: white; /* Màu chữ trên nút tăng */
+    font-size: 1.2em; /* Kích thước chữ trên nút tăng */
+}
+
+/* Tùy chỉnh kích thước và kiểu dáng cho nút giảm */
+.decrement-button-custom {
+    width: 100px; /* Chiều rộng của nút giảm */
+    height: 30px; /* Chiều cao của nút giảm */
+    background-color: #f44336; /* Màu nền của nút giảm */
+    color: white; /* Màu chữ trên nút giảm */
+    font-size: 1.2em; /* Kích thước chữ trên nút giảm */
+}
+.pay-button:hover {
+    cursor: pointer;
+}
+
+.buy-more-button:hover {
+    cursor: pointer;
+}
+
+.custom-position-button-delete{
+    position: absolute;
+    right: 15px;
+}
+

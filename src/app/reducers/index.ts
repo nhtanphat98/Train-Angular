@@ -7,7 +7,6 @@ import {
   MetaReducer
 } from '@ngrx/store';
 import { cartReducer } from './cart.reducers';
-import { Product } from '../../type';
 
 export interface State {
 }

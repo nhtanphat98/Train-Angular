@@ -17,9 +17,9 @@
 }
 
 .list-card {
-    width                : 100%;
+    width                : 98%;
     display              : grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .card:hover {
@@ -82,9 +82,11 @@ app-filter-search:hover {
 }
 
 .pi-plus-circle-custom {
-    font-size: 24px; /* Điều chỉnh kích thước biểu tượng */   
+    font-size: 39px; /* Điều chỉnh kích thước biểu tượng */   
     cursor: pointer; /* Hiển thị con trỏ tay khi hover */
-    color: #333; /* Màu sắc của dấu + */
+    color: lightyellow; /* Màu sắc của dấu + */
+    background-color: yellow;
+    border-radius: 50%;
   }
   
   /* Hiệu ứng hover */
@@ -102,4 +104,9 @@ app-filter-search:hover {
     cursor: not-allowed; /* Hiển thị con trỏ bị cấm khi hover */
   }
 
+  .add-product{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   

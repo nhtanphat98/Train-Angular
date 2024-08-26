@@ -22,7 +22,6 @@ export class HeaderComponent {
 
   onActiveItemChange(event: MenuItem) {
     this.activeItem = event;
-    console.log(this.activeItem);
     if(this.activeItem.label === 'Home'){
       this.route = '';
     }

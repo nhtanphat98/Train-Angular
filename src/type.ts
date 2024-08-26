@@ -68,3 +68,14 @@ export interface PaginationParams {
     pageNumber: number;
     pageSize: number;
 }
+
+export interface CreateOrderDto {
+    user_id: number;
+  }
+
+  export interface CreateOrderDetailDto {
+    product_id: number;
+    order_id: number;
+    quantity: number;
+  }
+  

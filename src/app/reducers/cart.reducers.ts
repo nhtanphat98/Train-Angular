@@ -1,29 +1,40 @@
-import { createReducer, on } from "@ngrx/store";
-import { addToCart, clearCart, removeFromCart, updateQuantity } from "../shopping-cart/cart-store/cart.actions";
-import { Product } from "../../type";
+import { createReducer, on } from '@ngrx/store';
+import {
+    addToCart,
+    clearCart,
+    loadCart,
+    removeFromCart,
+    saveCartToLocalStorage,
+    updateQuantity,
+} from '../shopping-cart/cart-store/cart.actions';
+import { Product } from '../../type';  
 
-export const initialState: Product[] = []
+export const initialState: Product[] = [];
 export const cartReducer = createReducer(
     initialState,
-    on(addToCart, (state, { product }) => ({
-        ...state,
-        items: [...state, product]
-    })),
-    on(removeFromCart, (state, { productId }) => ({
-        ...state,
-        items: state.filter(item => item.id !== productId)
-    })),
-    on(clearCart, state => ({
-        ...state,
-        items: []
-    })),
-    on(updateQuantity, (state, {productId, quantity}) => ({
-        ...state,
-        items: state.map(item =>
-            item.id === productId
-              ? { ...item, quantity } // Cập nhật số lượng sản phẩm
-              : item
-          )
-    }))
+    on(loadCart, (state, { cart }) => [...cart]),
+    on(addToCart, (state, { product }) => {
+        const updatedCart = [...state, product];
+        saveCartToLocalStorage(updatedCart); // Save to LocalStorage
+        return updatedCart;
+    }),
+    on(removeFromCart, (state, { productId }) => {
+        const updateCart = state.filter((item) => item.id !== productId);
+        saveCartToLocalStorage(updateCart);
+        return updateCart;
+    }),
+    on(clearCart, (state) => (state = [])),
+    on(updateQuantity, (state, { productId, quantity }) => {
+
+        const updateCart = state.map((item) =>
+            item.id === productId ? { ...item, quantity } : item
+        );
+        saveCartToLocalStorage(updateCart);
+        return updateCart;
+    })
 );
 
+export function loadCartFromLocalStorage(): Product[] {
+    const savedCart = localStorage.getItem('cart');
+    return savedCart ? JSON.parse(savedCart) : [];
+}

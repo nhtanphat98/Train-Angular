@@ -1,6 +1,13 @@
-<header class="wrapper row full-center">    
-    <p-tabMenu [model]="items" 
-    [activeItem]="activeItem" 
-    (activeItemChange)="onActiveItemChange($event)"
-    routerLink="{{route}}"/>
+<header class="wrapper row custom-header">
+    <div>
+        <p-tabMenu
+            [model]="items"
+            [activeItem]="activeItem"
+            (activeItemChange)="onActiveItemChange($event)"
+            routerLink="{{ route }}"
+        />
+    </div>
+    <div class="login">
+        Login
+    </div>
 </header>
