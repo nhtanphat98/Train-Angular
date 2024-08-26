@@ -9,7 +9,7 @@ import { CreateOrderDetailDto, CreateOrderDto, Product } from '../../type';
 import { clearCart, removeFromCart, updateQuantity } from './cart-store/cart.actions';
 import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { OrderService } from '../services/order.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -43,6 +43,7 @@ export class ShoppingCartComponent {
     quantity: number = 0;
 
     constructor(
+        private route: ActivatedRoute,
         private router: Router,
         private confirmationService: ConfirmationService,
         private orderService: OrderService,
@@ -93,7 +94,7 @@ export class ShoppingCartComponent {
                 });
             },
             reject: () => {
-                
+
                 this.messageService.add({
                     key: 'rejected',
                     severity: 'error',
@@ -109,8 +110,8 @@ export class ShoppingCartComponent {
     }
 
     navigateToHistory(user_id: number) {
-        this.router.navigate(['/history-cart'],{
-            queryParams: { userId:  user_id}
+        this.router.navigate(['/history-cart'], {
+            queryParams: { userId: user_id }
         });
     }
 
