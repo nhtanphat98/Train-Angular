@@ -1,6 +1,6 @@
 .star {
-    margin-top: 10px;
-    display: flex;
+    margin-top     : 10px;
+    display        : flex;
     justify-content: space-between;
 }
 
@@ -11,15 +11,14 @@
     border-radius   : 1%;
     border-color    : black;
     background-color: lightyellow;
-    width           : 266px;
-    height          : 385px;
+    width           : 15%;
     position        : relative;
 }
 
 .list-card {
-    width                : 98%;
-    display              : grid;
-    grid-template-columns: repeat(4, 1fr);
+    width  : 98%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .card:hover {
@@ -86,31 +85,40 @@ app-filter-search:hover {
 }
 
 .pi-plus-circle-custom {
-    font-size: 39px; /* Điều chỉnh kích thước biểu tượng */   
-    cursor: pointer; /* Hiển thị con trỏ tay khi hover */
-    color: lightyellow; /* Màu sắc của dấu + */
+    font-size       : 39px;
+    /* Điều chỉnh kích thước biểu tượng */
+    cursor          : pointer;
+    /* Hiển thị con trỏ tay khi hover */
+    color           : lightyellow;
+    /* Màu sắc của dấu + */
     background-color: yellow;
-    border-radius: 50%;
-  }
-  
-  /* Hiệu ứng hover */
-  .pi-plus-circle-custom:hover {
-    background-color: #e0e0e0; /* Màu nền khi hover */
-    color: #007bff; /* Màu sắc của dấu + khi hover */
-    transform: scale(1.1); /* Phóng to nhẹ khi hover */
-  }
-  
-  /* Cải thiện kiểu cho biểu tượng bị vô hiệu hóa */
-  .disabled-icon {
-    opacity: 0.5; /* Làm mờ biểu tượng */
-    pointer-events: none; /* Không cho phép tương tác */
-    color: #999; /* Màu sắc của dấu + khi bị vô hiệu hóa */
-    cursor: not-allowed; /* Hiển thị con trỏ bị cấm khi hover */
-  }
+    border-radius   : 50%;
+}
 
-  .add-product{
-    display: flex;
+/* Hiệu ứng hover */
+.pi-plus-circle-custom:hover {
+    background-color: #e0e0e0;
+    /* Màu nền khi hover */
+    color           : #007bff;
+    /* Màu sắc của dấu + khi hover */
+    transform       : scale(1.1);
+    /* Phóng to nhẹ khi hover */
+}
+
+/* Cải thiện kiểu cho biểu tượng bị vô hiệu hóa */
+.disabled-icon {
+    opacity       : 0.5;
+    /* Làm mờ biểu tượng */
+    pointer-events: none;
+    /* Không cho phép tương tác */
+    color         : #999;
+    /* Màu sắc của dấu + khi bị vô hiệu hóa */
+    cursor        : not-allowed;
+    /* Hiển thị con trỏ bị cấm khi hover */
+}
+
+.add-product {
+    display        : flex;
     justify-content: center;
-    align-items: center;
-  }
-  
+    align-items    : center;
+}

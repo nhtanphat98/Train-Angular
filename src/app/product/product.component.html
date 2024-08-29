@@ -21,10 +21,10 @@
     <div class="card" *ngFor="let product of products" (mouseover)="showPopup($event, product)"
         (mousemove)="updatePopupPosition($event)" (mouseleave)="hidePopup()">
         <div
-            [ngClass]="{'status-tag': true, 'available': product.status === 'available', 'out-of-stock': product.status === 'out of stock'}">
+            [ngClass]="{'status-tag': true, 'available': product.quantity > 0, 'out-of-stock': product.quantity === 0}">
             {{ product.status }}
         </div>
-        <img style="width: 245px; height: 220px" src="assets\images\products\{{ product.image }}" />
+        <img src="assets\images\products\{{ product.image }}" />
         <h2 class="title">{{ product.name }}</h2>
         <div class="product-price">
             <span class="price-label">Price: </span>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="add-product" style="display: flex; justify-items: center;">
                     <i class="pi pi-plus-circle pi-plus-circle-custom"
-                        [ngClass]="{'disabled-icon': product.status === 'out of stock'}"
+                        [ngClass]="{'disabled-icon': product.quantity === 0}"
                         (click)="addProductToCart(product)"
                         ></i>
                     <p-toast key="br" position="bottom-right"/>

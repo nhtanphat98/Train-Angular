@@ -10,8 +10,8 @@
             <div style="width: 70px;">
                 <label for="name" class="font-semibold w-6rem" style="width: 30px;">Name: </label>
             </div>
-            <div>
-                <input type="text" [(ngModel)]="searchFilter.name" style="width: 332px; margin-left: 20px;" />
+            <div style="width: 100%;">
+                <input type="text" pInputText [(ngModel)]="searchFilter.name" style="width: 90%; margin-left: 20px;"/>
             </div>
         </div>
 
@@ -19,7 +19,7 @@
             <div style="width: 70px;">
                 <label for="status" class="font-semibold w-6rem">Status: </label>
             </div>
-            <div style="width: 250px; display: flex; padding-left: 20px;">
+            <div style="display: flex; margin-left: 12px;">
                 <p-dropdown [options]="statusOptions" [checkmark]="true" optionLabel="name" [showClear]="true"
                     placeholder="Select a Status" (onChange)="onStatusChange($event)">
                 </p-dropdown>
@@ -32,19 +32,19 @@
                 <label for="price" class="font-semibold w-6rem">Price: </label>
             </div>
 
-            <div style="width: 250px; display: flex; ">
+            <div style="width: 250px; display: flex; margin-left: 12px;">
                 <div style="margin-right: 20px;">
-                    <input type="text" [(ngModel)]="searchFilter.rangePrice[0]"
-                        style="width: 100px; margin-left: 20px;" />
+                    <input type="text" pInputText [(ngModel)]="searchFilter.rangePrice[0]" style="width: 100px;"/>
                 </div>
                 <span>-</span>
                 <div style="margin-left: 21px;">
-                    <input type="text" [(ngModel)]="searchFilter.rangePrice[1]" style="width: 100px;" />
+                    <input type="text" pInputText [(ngModel)]="searchFilter.rangePrice[1]" style="width: 100px"/>
                 </div>
             </div>
 
         </div>
-        <div style="width: 70%; margin-left: 90px; margin-bottom: 30px;">
+        
+        <div style="width: 76%; margin-left: 90px; margin-bottom: 30px;">
             <p-slider [(ngModel)]="searchFilter.rangePrice" [min]="0" [max]="10000" [step]="100" [range]="true" />
         </div>
 
@@ -52,9 +52,9 @@
             <div style="width: 70px;">
                 <label for="category" class="font-semibold w-6rem">Category: </label>
             </div>
-            <div style="width: 250px; display: flex; padding-left: 20px;">
+            <div style="display: flex; padding-left: 12px;">
                 <p-dropdown [options]="categoryOptions" [checkmark]="true" optionLabel="name" [showClear]="true"
-                    placeholder="Select a Category" (onChange)="onCategoryChange($event)" >
+                    placeholder="Select a Category" (onChange)="onCategoryChange($event)" styleClass="w-20rem">
                 </p-dropdown>
 
             </div>
@@ -68,7 +68,7 @@
                 <p-rating [(ngModel)]="searchFilter.rating" [stars]="5" />
             </div>
         </div>
-        <div class="search-button">
+        <div class="search-button" style="margin-right: 27px">
             <p-button label="Search" (onClick)="onSearch()" />
         </div>
 

@@ -21,19 +21,22 @@
                 </div>
                 <div
                     style="
-                        width: 70%;
+                        width: 80%;
                         display: flex;
                         flex-direction: column;
                         justify-content: space-between;
                         margin-left: 50px;
                     "
                 >
-                    <div style="flex-grow: 1">
+                    <div style="flex-grow: 1; display: flex; justify-content: space-between; width: 100%; align-items: center; ">
                         <b>
                             {{ product.name }}
                         </b>
+                        <div style="width: 50px; right: 0">
+                            {{ product.price * product.quantity }}
+                        </div>
                     </div>
-                    <div style="flex-grow: 1">
+                    <div style="flex-grow: 1; display: flex; justify-content: space-between; width: 100%; align-items: center; text-align: center;">
                         <span style="color: red"
                             >Price: {{ product.price }}</span
                         >
@@ -64,9 +67,6 @@
                             "
                         ></p-inputNumber>
                     </div>
-                </div>
-                <div style="width: 50px; right: 0">
-                    {{ product.price * product.quantity }}
                 </div>
             </div>
         </div>

@@ -59,7 +59,8 @@ export class ProductComponent {
     value!: string;
     productHovered!: Product;
     first = 0;
-    rows = 10;
+    rows = 8;
+
     messageContent!: string;
     searchFilter: SearchFilter = {
         rangePrice: [0, 10000],
@@ -129,7 +130,7 @@ export class ProductComponent {
         this.loadProducts();
     }
 
-    getFilterSearchText(){
+    getFilterSearchText() {
         this.searchFilter.name = this.searchFilterText;
         this.loadProducts();
     }
@@ -143,8 +144,9 @@ export class ProductComponent {
                 return;
             }
         }
-        product.quantity = 1;
-        this.store.dispatch(addToCart({product}));
+        const addProduct = ({ ...product });
+        addProduct.quantity = 1;
+        this.store.dispatch(addToCart({ product: addProduct }));
         this.showSuccess();
     }
 

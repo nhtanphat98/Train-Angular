@@ -3,6 +3,10 @@
     width: 100%;
 }
 
+.custom-position-button-delete{
+    
+}
+
 .cart-review{
     display: flex;
     border-radius: 10px;
@@ -34,11 +38,6 @@
 
 .buy-more-button:hover {
     cursor: pointer;
-}
-
-.custom-position-button-delete{
-    position: absolute;
-    right: 15px;
 }
 
 .view-history:hover{

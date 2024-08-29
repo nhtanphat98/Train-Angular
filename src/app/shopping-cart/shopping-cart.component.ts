@@ -54,14 +54,14 @@ export class ShoppingCartComponent {
 
     createOrder() {
         const createOrderDto: CreateOrderDto = {
-            user_id: 1,
+            userId: 1,
         };
 
         let createOrderDetailDto: CreateOrderDetailDto[] = [];
         this.cart.forEach((item) => {
             createOrderDetailDto.push({
-                product_id: item.id,
-                order_id: 0,
+                productId: item.id,
+                orderId: 0,
                 quantity: item.quantity,
             });
         });
@@ -76,6 +76,12 @@ export class ShoppingCartComponent {
                     this.showError();
                 }
             );
+    }
+
+    navigateToCart() {
+        this.router.navigate([''],{
+            queryParams: { menuItemIndex: 0}
+        });
     }
 
     confirm(productId: number, event: Event) {
@@ -103,10 +109,6 @@ export class ShoppingCartComponent {
                 });
             },
         });
-    }
-
-    navigateToCart() {
-        this.router.navigate(['']);
     }
 
     navigateToHistory(user_id: number) {

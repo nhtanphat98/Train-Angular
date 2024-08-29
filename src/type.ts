@@ -70,26 +70,26 @@ export interface PaginationParams {
 }
 
 export interface CreateOrderDto {
-    user_id: number;
+    userId: number;
   }
 
   export interface CreateOrderDetailDto {
-    product_id: number;
-    order_id: number;
+    productId: number;
+    orderId: number;
     quantity: number;
   }
   
   export interface OrderDetail{
     id: number;
-    product_id: number;
-    order_id: number;
+    productId: number;
+    orderId: number;
     quantity: number;
     created_at: Date;
   }
 
   export interface Order{
     id: number;
-    user_id: number;
+    userId: number;
     created_at: Date;
     orderDetail: OrderDetail[];
   }

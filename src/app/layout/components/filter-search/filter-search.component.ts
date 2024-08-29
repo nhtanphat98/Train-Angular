@@ -8,11 +8,12 @@ import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
 import { DropdownModule } from 'primeng/dropdown';
 import { CategoryService } from '../../../services/category.service';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-filter-search',
   standalone: true,
-  imports: [FormsModule, DialogModule, CommonModule, ButtonModule, SliderModule, RatingModule, DropdownModule
+  imports: [FormsModule, DialogModule, CommonModule, ButtonModule, SliderModule, RatingModule, DropdownModule, InputTextModule
   ],
   templateUrl: './filter-search.component.html',
   styleUrl: './filter-search.component.scss'
