@@ -1,22 +1,19 @@
-<div style="display: flex;">
+<div style="display: flex; justify-content: center;">
     <div class="search">
         <p-iconField iconPosition="right" style="width: 95%">
             <div class="icon-search">
-                <p-inputIcon styleClass="pi pi-search"/>
+                <p-inputIcon styleClass="pi pi-search" />
             </div>
-            
-            <input  [(ngModel)]="searchFilterText" type="text" pInputText style="width: 100%; font-size: 16px" placeholder="Search by name" (keyup.enter)="getFilterSearchText()"/>
+
+            <input [(ngModel)]="searchFilterText" type="text" pInputText style="width: 100%; font-size: 16px"
+                placeholder="Search by name" (keyup.enter)="getFilterSearchText()" />
         </p-iconField>
     </div>
-
-
-
     <app-filter-search header="Search Filter" (search)="getFilterSearch($event)"
         style="margin-top: 50px; margin-left: 20px;">
 
     </app-filter-search>
 </div>
-<div></div>
 <div class="list-card">
     <div class="card" *ngFor="let product of products" (mouseover)="showPopup($event, product)"
         (mousemove)="updatePopupPosition($event)" (mouseleave)="hidePopup()">
@@ -24,8 +21,8 @@
             [ngClass]="{'status-tag': true, 'available': product.quantity > 0, 'out-of-stock': product.quantity === 0}">
             {{ product.status }}
         </div>
-        <img src="assets\images\products\{{ product.image }}" />
-        <h2 class="title">{{ product.name }}</h2>
+        <img style="width: 100%;" src="assets\images\products\{{ product.image }}" />
+        <div style="font-weight: bold; font-size: 16px;" class="title">{{ product.name }}</div>
         <div class="product-price">
             <span class="price-label">Price: </span>
             <span class="price">{{ product.price }}$</span><br />
@@ -35,17 +32,17 @@
                 </div>
                 <div class="add-product" style="display: flex; justify-items: center;">
                     <i class="pi pi-plus-circle pi-plus-circle-custom"
-                        [ngClass]="{'disabled-icon': product.quantity === 0}"
-                        (click)="addProductToCart(product)"
-                        ></i>
-                    <p-toast key="br" position="bottom-right"/>
+                        [ngClass]="{'disabled-icon': product.quantity === 0}" (click)="addProductToCart(product)"></i>
+                    <p-toast key="br" position="bottom-right" />
                 </div>
             </div>
         </div>
-    
-    
+
+
 
     </div>
+
+
     <div class="popup" *ngIf="isPopupVisible" [ngStyle]="{
         'top.px': popupPosition.y,
         'left.px': popupPosition.x

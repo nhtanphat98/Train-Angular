@@ -10,6 +10,7 @@ import { Router, RouterModule } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ProductsService } from '../../../services/products.service';
 
 @Component({
     selector: 'app-cart-review',
@@ -31,12 +32,12 @@ export class CartReviewComponent {
     cart$?: Observable<Product[]>;
     cart: Product[] = [];
     totalPrice: number = 0;
-    quantity: number = 0;
     key: string = '';
     active: string ='';
 
     constructor(private messageService: MessageService,
-        private router: Router
+        private router: Router,
+        private productService: ProductsService
     ) {
         this.cart$ = this.store.select('cart');
     }
@@ -56,8 +57,19 @@ export class CartReviewComponent {
 
     onQuantityChange(productId: number, newQuantity: number) {
         const product = this.cart.find((p) => p.id === productId);
+        console.log(product?.quantity);
+        this.productService.getProduct(productId).subscribe(response => {
+            const productFromDB = response;
+            console.log(productFromDB);
+            if(product!.quantity > productFromDB.quantity){
+                this.showError('Your order > quantity of product!');
+                this.store.dispatch(
+                    updateQuantity({ productId: productId, quantity: productFromDB.quantity })
+                );
+                return;
+            }
+        });
         if (product) {
-            console.log(product);
 
             product.quantity = newQuantity;
 

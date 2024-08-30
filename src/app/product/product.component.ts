@@ -48,7 +48,7 @@ import { MessageService } from 'primeng/api';
     ],
     templateUrl: './product.component.html',
     styleUrl: './product.component.scss',
-    providers: [MessageService],
+    providers: [MessageService, ProductsService],
 })
 export class ProductComponent {
     products: Product[] = [];
@@ -156,15 +156,6 @@ export class ProductComponent {
             severity: 'success',
             summary: 'Success',
             detail: 'Added Success',
-        });
-    }
-
-    showError() {
-        this.messageService.add({
-            key: 'br',
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Add Fail',
         });
     }
 

@@ -12,13 +12,20 @@
     border-color    : black;
     background-color: lightyellow;
     width           : 15%;
+    min-width       : 250px;
     position        : relative;
 }
 
+.title {
+    width: 100%;
+}
+
 .list-card {
-    width  : 98%;
-    display: flex;
+    width    : 100%;
+    display  : flex;
     flex-wrap: wrap;
+    justify-content: center;
+    
 }
 
 .card:hover {

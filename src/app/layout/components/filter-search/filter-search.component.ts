@@ -19,7 +19,7 @@ import { InputTextModule } from 'primeng/inputtext';
   styleUrl: './filter-search.component.scss'
 })
 
-export class FilterSearchComponent {
+export class FilterSearchComponent{
   constructor(private formBuilder: FormBuilder, private categoryService: CategoryService) { }
   @Input() display: boolean = false;
   @Input() header: string = '';
@@ -31,7 +31,7 @@ export class FilterSearchComponent {
     { name: 'Out of Stock', value: 'out of stock' }
   ];
 
-  categoryOptions: {name: string, value: string}[] = [];
+  categoryOptions!: Category[];
 
   @Input() searchFilter: SearchFilter = {
     rangePrice: [this.minPrice, this.maxPrice],
@@ -42,6 +42,7 @@ export class FilterSearchComponent {
   };
 
   onSearch() {
+    console.log(this.searchFilter.category_id);
     this.search.emit(this.searchFilter);
     this.display = false;
   }
@@ -58,11 +59,11 @@ export class FilterSearchComponent {
     }
   }
 
-  
+
 
   LoadCategories() {
     this.categoryService.getCategories().subscribe((response) => {
-      response.map(item => this.categoryOptions.push({name: item.name, value: item.id.toString()}));
+      this.categoryOptions = response;
     });
     console.log(this.categoryOptions);
     console.log(this.statusOptions);
@@ -72,7 +73,7 @@ export class FilterSearchComponent {
     this.display = true;
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.LoadCategories();
   }
 
@@ -82,11 +83,9 @@ export class FilterSearchComponent {
   }
 
   onCategoryChange(selectedCategory: any): void {
-    if(selectedCategory.value!= null){
-      console.log(selectedCategory);
-      this.searchFilter.category_id = selectedCategory.value.value;
-    }
+    
+    this.searchFilter.category_id = selectedCategory.value.value;
+    // Thực hiện các hành động cần thiết khi giá trị status thay đổi
   }
-
 }
 
